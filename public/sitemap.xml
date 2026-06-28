@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Sitemap for app.desireconsultancy.in (Secure Client Portal)
+  
+  Professional design details:
+  - This is a private client portal.
+  - Zero public URLs are generated or exposed in this sitemap.
+  - An empty <urlset> is returned to satisfy crawlers without exposing routes.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+</urlset>

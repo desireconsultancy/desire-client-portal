@@ -2,12 +2,14 @@ import { useEffect } from "react";
 import { RouterProvider } from "react-router";
 import { router } from "./routes.tsx";
 import { useAppStore } from "./store/appStore";
+import { enforceSecurityMetaTags } from "./utils/seoSecurity.ts";
 
 export default function App() {
   const initializeAuth = useAppStore((state) => state.initializeAuth);
   const loading = useAppStore((state) => state.loading);
 
   useEffect(() => {
+    enforceSecurityMetaTags();
     initializeAuth();
   }, [initializeAuth]);
 

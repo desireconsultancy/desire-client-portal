@@ -205,41 +205,108 @@ export function LoginPage() {
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex">
       {/* Left Panel */}
-      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #007FCD 0%, #00AFCF 60%, #14C6C8 100%)" }}>
-        <div className="absolute inset-0 opacity-10">
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden shadow-[8px_0_30px_rgba(15,23,42,0.12)] border-r border-white/10 z-20">
+        {/* Background Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover animate-slow-pan"
+          style={{ zIndex: 0, filter: "blur(3px)" }}
+        >
+          <source src="/compliance_bg.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        {/* Stronger Blue Gradient Overlay (55-65%) */}
+        <div 
+          className="absolute inset-0"
+          style={{ 
+            background: "linear-gradient(135deg, rgba(0, 78, 146, 0.6) 0%, rgba(0, 127, 205, 0.65) 50%, rgba(0, 175, 207, 0.7) 100%)",
+            zIndex: 1
+          }} 
+        />
+
+        {/* Vignette Overlay */}
+        <div 
+          className="absolute inset-0"
+          style={{ 
+            background: "radial-gradient(circle, transparent 30%, rgba(15, 23, 42, 0.5) 100%)",
+            zIndex: 1
+          }} 
+        />
+
+        <div className="absolute inset-0 opacity-20" style={{ zIndex: 2 }}>
           <div className="absolute top-16 left-12 w-64 h-64 rounded-full bg-white/20 blur-3xl" />
           <div className="absolute bottom-24 right-8 w-80 h-80 rounded-full bg-white/15 blur-3xl" />
         </div>
-        <div className="relative z-10 flex flex-col justify-between p-14">
+
+        <div className="relative z-10 flex flex-col justify-between px-20 py-16 w-full h-full">
           <div>
-            <div className="flex items-center gap-3 mb-16">
+            {/* Logo */}
+            <div className="flex items-center gap-3 mb-16 animate-fade-in-up">
               <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
                 <span className="text-white font-bold">DC</span>
               </div>
               <div>
                 <p className="text-white font-semibold">Desire Consultancy</p>
-                <p className="text-white/70 text-sm">Client Portal</p>
+                <p className="text-white/80 text-sm font-medium">Client Portal</p>
               </div>
             </div>
-            <h2 className="text-4xl font-bold text-white leading-tight mb-4">
+
+            {/* Headline */}
+            <h2 className="text-5xl xl:text-6xl font-bold text-white leading-[1.05] tracking-tight mb-6 animate-fade-in-up animation-delay-100">
               Your compliance<br />journey, simplified.
             </h2>
-            <p className="text-white/80 text-lg leading-relaxed max-w-sm">
+
+            {/* Description */}
+            <p className="text-white/80 text-lg leading-relaxed max-w-md animate-fade-in-up animation-delay-200">
               Track certifications, manage documents, and monitor progress — all in one place.
             </p>
+
+            {/* Trust Statistics */}
+            <div className="grid grid-cols-3 gap-6 my-10 animate-fade-in-up animation-delay-300">
+              {[
+                { value: "500+", label: "Businesses", sublabel: "Served" },
+                { value: "98%", label: "Approval", sublabel: "Success" },
+                { value: "10+", label: "Years", sublabel: "Experience" }
+              ].map((stat, index) => (
+                <div key={index} className="flex flex-col border-l border-white/20 pl-4">
+                  <span className="text-3xl font-extrabold text-white tracking-tight leading-none mb-1.5">{stat.value}</span>
+                  <span className="text-white/80 text-xs font-semibold leading-tight">{stat.label}</span>
+                  <span className="text-white/65 text-[10px] uppercase tracking-wider font-medium mt-0.5">{stat.sublabel}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="space-y-4">
+          {/* Glassmorphism Cards */}
+          <div className="space-y-4 animate-fade-in-up animation-delay-400">
             {[
-              { label: "FSSAI Licensing", detail: "Food safety compliance made easy" },
-              { label: "BIS Certification", detail: "Bureau of Indian Standards approvals" },
-              { label: "Trademark Registration", detail: "Protect your brand identity" },
+              { 
+                label: "FSSAI Licensing", 
+                detail: "Food safety compliance made easy" 
+              },
+              { 
+                label: "BIS Certification", 
+                detail: "Bureau of Indian Standards approvals" 
+              },
+              { 
+                label: "Trademark Registration", 
+                detail: "Protect your brand identity" 
+              },
             ].map((item) => (
-              <div key={item.label} className="flex items-start gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-white/60 mt-2 flex-shrink-0" />
+              <div 
+                key={item.label} 
+                className="flex items-start gap-4 p-4 bg-white/8 backdrop-blur-md border border-white/12 rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/12 hover:border-white/20 group cursor-pointer shadow-sm"
+              >
+                <div className="w-6 h-6 rounded-lg bg-white/15 flex items-center justify-center mt-0.5 group-hover:bg-white/20 transition-colors">
+                  <Check className="text-white w-3.5 h-3.5" strokeWidth={3} />
+                </div>
                 <div>
-                  <p className="text-white font-medium text-sm">{item.label}</p>
-                  <p className="text-white/60 text-xs">{item.detail}</p>
+                  <p className="text-white font-semibold text-sm leading-tight mb-1">{item.label}</p>
+                  <p className="text-white/65 text-xs leading-normal">{item.detail}</p>
                 </div>
               </div>
             ))}
@@ -249,7 +316,7 @@ export function LoginPage() {
 
       {/* Right Panel */}
       <div className="flex-1 flex items-center justify-center p-8 bg-white lg:bg-[#F8FAFC]">
-        <div className="w-full max-w-md bg-white border border-[rgba(15,23,42,0.06)] rounded-2xl p-6 sm:p-8 shadow-sm animate-fade-in">
+        <div className="w-full max-w-md bg-white border border-slate-100/80 rounded-2xl p-6 sm:p-8 shadow-[0_24px_60px_rgba(15,23,42,0.06)] animate-fade-in-up">
           <div className="lg:hidden flex items-center gap-2 mb-8">
             <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg, #007FCD, #00AFCF)" }}>
               <span className="text-white text-xs font-bold">DC</span>
@@ -273,45 +340,45 @@ export function LoginPage() {
 
               <form onSubmit={handleCompleteProfileSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-medium text-[#475569] mb-1.5 font-semibold uppercase tracking-wide">Full Name</label>
+                  <label className="block text-[11px] font-semibold text-slate-500 mb-1.5 uppercase tracking-wider">Full Name</label>
                   <input
                     type="text"
                     required
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="Enter your full name"
-                    className="w-full h-10 px-3 text-xs bg-white border border-[rgba(15,23,42,0.12)] rounded-lg focus:outline-none focus:border-[#007FCD] focus:ring-2 focus:ring-[#007FCD]/10 transition-all text-[#0F172A]"
+                    className="w-full h-11 px-4 text-xs bg-white border border-slate-200 rounded-xl placeholder-slate-400 focus:outline-none focus:border-[#007FCD] focus:ring-4 focus:ring-[#007FCD]/10 transition-all text-[#0F172A]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-[#475569] mb-1.5 font-semibold uppercase tracking-wide">Company Name</label>
+                  <label className="block text-[11px] font-semibold text-slate-500 mb-1.5 uppercase tracking-wider">Company Name</label>
                   <input
                     type="text"
                     required
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
                     placeholder="Enter company legal name"
-                    className="w-full h-10 px-3 text-xs bg-white border border-[rgba(15,23,42,0.12)] rounded-lg focus:outline-none focus:border-[#007FCD] focus:ring-2 focus:ring-[#007FCD]/10 transition-all text-[#0F172A]"
+                    className="w-full h-11 px-4 text-xs bg-white border border-slate-200 rounded-xl placeholder-slate-400 focus:outline-none focus:border-[#007FCD] focus:ring-4 focus:ring-[#007FCD]/10 transition-all text-[#0F172A]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-[#475569] mb-1.5 font-semibold uppercase tracking-wide">Mobile Number (Phone)</label>
+                  <label className="block text-[11px] font-semibold text-slate-500 mb-1.5 uppercase tracking-wider">Mobile Number (Phone)</label>
                   <input
                     type="tel"
                     required
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="+91 98765 43210"
-                    className="w-full h-10 px-3 text-xs bg-white border border-[rgba(15,23,42,0.12)] rounded-lg focus:outline-none focus:border-[#007FCD] focus:ring-2 focus:ring-[#007FCD]/10 transition-all text-[#0F172A]"
+                    className="w-full h-11 px-4 text-xs bg-white border border-slate-200 rounded-xl placeholder-slate-400 focus:outline-none focus:border-[#007FCD] focus:ring-4 focus:ring-[#007FCD]/10 transition-all text-[#0F172A]"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full h-10 rounded-lg text-xs font-semibold text-white flex items-center justify-center gap-2 transition-all bg-[#007FCD] hover:bg-[#007FCD]/90 disabled:opacity-70 mt-2"
+                  className="w-full h-11 rounded-xl text-xs font-semibold text-white flex items-center justify-center gap-2 transition-all bg-[#007FCD] hover:bg-[#007FCD]/90 disabled:opacity-70 cursor-pointer mt-3 shadow-sm hover:shadow-md hover:scale-[1.01] active:scale-[0.99]"
                 >
                   {loading ? <RefreshCw size={14} className="animate-spin" /> : "Save & Proceed"}
                 </button>
@@ -335,9 +402,9 @@ export function LoginPage() {
                 type="button"
                 onClick={handleGoogleSignIn}
                 disabled={loading}
-                className="w-full h-10 rounded-lg text-xs font-semibold text-[#0F172A] border border-[rgba(15,23,42,0.12)] bg-white hover:bg-slate-50 transition-colors flex items-center justify-center gap-2 mb-4 cursor-pointer"
+                className="w-full h-12 rounded-xl text-xs font-semibold text-[#0F172A] border border-slate-200 bg-white hover:bg-slate-50/80 hover:border-slate-300 hover:shadow-sm hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 mb-5 cursor-pointer"
               >
-                <svg className="w-3.5 h-3.5" viewBox="-3 0 262 262" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
+                <svg className="w-[18px] h-[18px]" viewBox="-3 0 262 262" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
                   <path d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027" fill="#4285F4"/>
                   <path d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1" fill="#34A853"/>
                   <path d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782" fill="#FBBC05"/>
@@ -347,9 +414,9 @@ export function LoginPage() {
               </button>
 
               <div className="relative flex py-2 items-center mb-4">
-                <div className="flex-grow border-t border-[rgba(15,23,42,0.08)]"></div>
-                <span className="flex-shrink mx-3 text-[#94A3B8] text-[10px] uppercase font-semibold">Or use email</span>
-                <div className="flex-grow border-t border-[rgba(15,23,42,0.08)]"></div>
+                <div className="flex-grow border-t border-slate-100"></div>
+                <span className="flex-shrink mx-3 text-[#94A3B8] text-[10px] uppercase font-bold tracking-wider">Or use email</span>
+                <div className="flex-grow border-t border-slate-100"></div>
               </div>
 
               {successMessage && (
@@ -368,33 +435,33 @@ export function LoginPage() {
 
               <form onSubmit={handleEmailAuth} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-medium text-[#475569] mb-1.5 font-semibold uppercase tracking-wide">Email Address</label>
+                  <label className="block text-[11px] font-semibold text-slate-500 mb-1.5 uppercase tracking-wider">Email Address</label>
                   <input
                     type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="name@company.com"
-                    className="w-full h-10 px-3 text-xs bg-white border border-[rgba(15,23,42,0.12)] rounded-lg focus:outline-none focus:border-[#007FCD] focus:ring-2 focus:ring-[#007FCD]/10 transition-all text-[#0F172A]"
+                    className="w-full h-11 px-4 text-xs bg-white border border-slate-200 rounded-xl placeholder-slate-400 focus:outline-none focus:border-[#007FCD] focus:ring-4 focus:ring-[#007FCD]/10 transition-all text-[#0F172A]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-[#475569] mb-1.5 font-semibold uppercase tracking-wide">Password</label>
+                  <label className="block text-[11px] font-semibold text-slate-500 mb-1.5 uppercase tracking-wider">Password</label>
                   <input
                     type="password"
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full h-10 px-3 text-xs bg-white border border-[rgba(15,23,42,0.12)] rounded-lg focus:outline-none focus:border-[#007FCD] focus:ring-2 focus:ring-[#007FCD]/10 transition-all text-[#0F172A]"
+                    className="w-full h-11 px-4 text-xs bg-white border border-slate-200 rounded-xl placeholder-slate-400 focus:outline-none focus:border-[#007FCD] focus:ring-4 focus:ring-[#007FCD]/10 transition-all text-[#0F172A]"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full h-10 rounded-lg text-xs font-semibold text-white flex items-center justify-center gap-2 transition-all bg-[#007FCD] hover:bg-[#007FCD]/90 disabled:opacity-70 cursor-pointer"
+                  className="w-full h-11 rounded-xl text-xs font-semibold text-white flex items-center justify-center gap-2 transition-all bg-[#007FCD] hover:bg-[#007FCD]/90 disabled:opacity-70 cursor-pointer mt-3 shadow-sm hover:shadow-md hover:scale-[1.01] active:scale-[0.99]"
                 >
                   {loading ? (
                     <RefreshCw size={14} className="animate-spin" />
@@ -425,9 +492,25 @@ export function LoginPage() {
                 )}
               </div>
 
-              <div className="mt-6 flex items-center justify-center gap-2 text-[10px] text-[#94A3B8]">
-                <Shield size={11} />
-                <span>Secured with 256-bit encryption</span>
+              <div className="mt-8 pt-6 border-t border-slate-100/80">
+                <div className="grid grid-cols-3 gap-2 text-[9px] font-semibold uppercase tracking-wider text-slate-400 text-center">
+                  <div className="flex flex-col items-center gap-1.5 p-1">
+                    <Shield size={14} className="text-slate-400" />
+                    <span>Secure Auth</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-1.5 border-x border-slate-100/80 p-1">
+                    <svg className="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    <span>Encrypted</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-1.5 p-1">
+                    <svg className="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                    </svg>
+                    <span>Cloud Hosted</span>
+                  </div>
+                </div>
               </div>
             </div>
           )}

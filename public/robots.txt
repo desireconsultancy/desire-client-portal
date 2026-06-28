@@ -1,0 +1,14 @@
+# =========================================================================
+# robots.txt for app.desireconsultancy.in
+#
+# This is a SECURE CLIENT PORTAL. It is NOT a public-facing website.
+#
+# Security policy:
+# 1. Block ALL search engine web crawlers.
+# 2. Prevent scanning, caching, indexing, and scraping.
+# 3. Do not list internal directories (e.g., /dashboard, /login) to avoid
+#    information leakage or exposing route endpoints to potential attackers.
+# =========================================================================
+
+User-agent: *
+Disallow: /

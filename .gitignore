@@ -5,3 +5,4 @@ dist
 .env.*.local
 *.log
 *.mp4
+public/sitemap.xml
